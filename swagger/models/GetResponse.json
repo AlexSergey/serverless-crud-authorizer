@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GetResponse",
+  "description": "This is a schema for responses in the JSON API format. For more, see http://jsonapi.org",
+  "type": "object",
+  "required": [
+    "get"
+  ],
+  "properties": {
+    "get": {
+      "$ref": "#/definitions/get"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "get": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "The HTTP status code applicable to this problem, expressed as a string value.",
+          "type": "string"
+        },
+        "code": {
+          "description": "An application-specific status code, expressed as a number value.",
+          "type": "number"
+        }
+      }
+    }
+  }
+}

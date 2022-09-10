@@ -1,0 +1,30 @@
+service: hello-world-service
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-openapi-documenter
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+custom:
+  documentation: ${file(serverless.docs.yml):documentation}
+
+functions:
+  helloWorld:
+    handler: src/functions/hello-world/index.helloWorld
+    events:
+      - http:
+          path: helloWorld
+          method: get
+          documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
+          authorizer:
+            name: custom-authorizer
+            identitySource: method.request.header.Authorization
+  custom-authorizer:
+    handler: src/functions/authorizer/index.verifyToken

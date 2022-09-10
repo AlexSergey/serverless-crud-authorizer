@@ -1,0 +1,24 @@
+endpoints:
+  helloWorld:
+    tags: [ "Get Hello World" ]
+    summary: "Get Hello World"
+    description: "Get Hello World"
+    methodResponses:
+      - statusCode: 200
+        responseBody:
+          description: "Get Hello World"
+        responseModels:
+          application/json: "GetResponse"
+
+documentation:
+  version: '1'
+  title: 'Hello World API'
+  description: 'This is an API for Hello World'
+  servers:
+    url: http://localhost:3000/dev
+    description: The server
+  models:
+    - name: GetResponse
+      description: Success
+      contentType: application/json
+      schema: ${file(swagger/models/GetResponse.json)}

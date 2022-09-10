@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hello World API",
+    "description": "This is an API for Hello World",
+    "version": "1"
+  },
+  "components": {
+    "schemas": {
+      "get": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "The HTTP status code applicable to this problem, expressed as a string value.",
+            "type": "string"
+          },
+          "code": {
+            "description": "An application-specific status code, expressed as a number value.",
+            "type": "number"
+          }
+        }
+      },
+      "GetResponse": {
+        "title": "GetResponse",
+        "description": "This is a schema for responses in the JSON API format. For more, see http://jsonapi.org",
+        "type": "object",
+        "required": [
+          "get"
+        ],
+        "properties": {
+          "get": {
+            "$ref": "#/components/schemas/get"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "paths": {
+    "/helloWorld": {
+      "get": {
+        "summary": "Get Hello World",
+        "description": "Get Hello World",
+        "operationId": "hello-world-service-dev-helloWorld",
+        "parameters": [],
+        "tags": [
+          "Get Hello World"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Hello World",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/dev",
+      "description": "The server"
+    }
+  ]
+}
