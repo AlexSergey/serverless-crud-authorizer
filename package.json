@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "SET SLS_DEBUG=* && node --inspect node_modules\\serverless\\bin\\serverless.js offline -s dev",
-    "deploy": "serverless deploy -v",
+    "deploy": "serverless deploy",
     "package": "serverless package",
     "start": "serverless offline start -r us-east-1 --noTimeout",
     "swagger": "ts-node swagger/index.ts",
