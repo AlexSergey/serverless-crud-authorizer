@@ -14,6 +14,8 @@ provider:
 
 custom:
   documentation: ${file(serverless.docs.yml):documentation}
+  serverless-offline:
+    reloadHandler: true
 
 functions:
   helloWorld:
