@@ -18,15 +18,68 @@ custom:
     reloadHandler: true
 
 functions:
-  helloWorld:
-    handler: src/functions/hello-world/index.helloWorld
+  get-movies:
+    handler: src/functions/get-movies/index.handler
     events:
       - http:
-          path: helloWorld
+          path: get-movies
           method: get
           documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
+  get-genres:
+    handler: src/functions/get-genres/index.handler
+    events:
+      - http:
+          path: get-genres
+          method: get
+          documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
+  create-movie:
+    handler: src/functions/create-movie/index.handler
+    events:
+      - http:
+          path: create-movie
+          method: post
+          documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
           authorizer:
-            name: custom-authorizer
+            name: ctm-authorizer
             identitySource: method.request.header.Authorization
-  custom-authorizer:
+  get-movie-by-id:
+    handler: src/functions/get-movie-by-id/index.handler
+    events:
+      - http:
+          path: get-movies/{id}
+          method: get
+          documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
+          request:
+            parameters:
+              paths:
+                id: true
+  delete-movie:
+    handler: src/functions/delete-movie/index.handler
+    events:
+      - http:
+          path: delete-movie/{id}
+          method: delete
+          documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
+          request:
+            parameters:
+              paths:
+                id: true
+          authorizer:
+            name: ctm-authorizer
+            identitySource: method.request.header.Authorization
+  update-movie:
+    handler: src/functions/update-movie/index.handler
+    events:
+      - http:
+          path: update-movie/{id}
+          method: put
+          documentation: ${file(serverless.docs.yml):endpoints.helloWorld}
+          request:
+            parameters:
+              paths:
+                id: true
+          authorizer:
+            name: ctm-authorizer
+            identitySource: method.request.header.Authorization
+  ctm-authorizer:
     handler: src/functions/authorizer/index.verifyToken

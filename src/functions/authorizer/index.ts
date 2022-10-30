@@ -1,27 +1,28 @@
-import { APIGatewayTokenAuthorizerEvent } from 'aws-lambda';
+import { APIGatewayTokenAuthorizerEvent, APIGatewayAuthorizerResult } from 'aws-lambda';
 
-const isAuthorized = (token) => token.indexOf('Bearer') === 0;
+const checkToken = (token: undefined | string): boolean => typeof token === 'string' && token.indexOf('Bearer') === 0;
 
-const verifyToken = async (event: APIGatewayTokenAuthorizerEvent) => {
-  console.log('verifyToken', event.authorizationToken);
+const verifyToken = async (event: APIGatewayTokenAuthorizerEvent): Promise<APIGatewayAuthorizerResult> => {
+  const isAuthorized = checkToken(event.authorizationToken);
+
   return {
-    context: {
-      user: 'user data from token'
-    },
-    principalId: 'anonymous',
+    context: isAuthorized
+      ? {
+          user: 'User',
+        }
+      : null,
     policyDocument: {
-      Version: '2012-10-17',
       Statement: [
         {
-          Effect: isAuthorized(event.authorizationToken) ? 'Allow' : 'Deny',
-          Action: [
-            'execute-api:Invoke'
-          ],
+          Action: ['execute-api:Invoke'],
+          Effect: isAuthorized ? 'Allow' : 'Deny',
           Resource: event.methodArn,
         },
       ],
+      Version: '2012-10-17',
     },
+    principalId: 'anonymous',
   };
-}
+};
 
 export { verifyToken };

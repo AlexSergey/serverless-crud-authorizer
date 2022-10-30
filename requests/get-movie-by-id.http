@@ -1,0 +1,2 @@
+GET http://localhost:3000/dev/get-movies/635adfea9782560e6f1e0e18
+Content-Type: application/json

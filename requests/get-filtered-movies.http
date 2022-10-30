@@ -1,0 +1,2 @@
+GET http://localhost:3000/dev/get-movies?genres=comedy&genres=fantasy
+Content-Type: application/json

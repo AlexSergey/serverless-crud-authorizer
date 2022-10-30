@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  mongodb-movies:
+    image: mongo:5.0
+    restart: always
+    ports:
+      - 27999:27017
+    volumes:
+      - ./db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin

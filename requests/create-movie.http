@@ -1,0 +1,16 @@
+POST http://localhost:3000/dev/create-movie
+Authorization: Bearer mytoken
+Content-Type: application/json
+
+{
+  "title": "Beetlejuice 2",
+  "year": "1989",
+  "runtime": "92",
+  "genres": [
+    "Comedy",
+    "Fantasy"
+  ],
+  "director": "Tim Burton",
+  "actors": "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
+  "plot": "A couple of recently deceased ghosts contract the services of a \"bio-exorcist\" in order to remove the obnoxious new owners of their house."
+}

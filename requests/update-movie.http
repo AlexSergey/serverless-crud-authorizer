@@ -1,0 +1,7 @@
+PUT http://localhost:3000/dev/update-movie/635adfea9782560e6f1e0e18
+Authorization: Bearer mytoken
+Content-Type: application/json
+
+{
+  "title": "Beetlejuice 3"
+}
