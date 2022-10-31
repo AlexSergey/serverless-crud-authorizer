@@ -97,7 +97,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.js', '**/*.spec.js'],
+        devDependencies: ['**/*.test.js', '**/*.spec.js', 'jest.*.ts'],
       },
     ],
     'import/order': [
@@ -150,7 +150,6 @@ module.exports = {
       files: ['jest.config.ts', 'jest.e2e.config.ts'],
       rules: {
         'import/no-default-export': 'off',
-        'import/no-extraneous-dependencies': 'off',
       },
     },
     /*
